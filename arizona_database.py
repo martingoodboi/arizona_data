@@ -4,7 +4,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  password="Lisna699",
+  password="----------",
   database="arizona"
 )
 
@@ -18,14 +18,14 @@ for _ in mycursor:
   print(_)
 """
 #select * from table
-"""mycursor = mydb.cursor()
+mycursor = mydb.cursor()
 
-mycursor.execute("SELECT * FROM arizona_roster")
+mycursor.execute("SELECT player_name FROM arizona_roster")
 
 myresult = mycursor.fetchall()
 
 for _ in myresult:
-  print(_)"""
+  print(_)
 
 #create table + add columns
 """mycursor = mydb.cursor()
