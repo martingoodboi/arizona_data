@@ -6,7 +6,7 @@ import re
 #SQL connection data to connect and save the data in
 HOST = "localhost"
 USERNAME = "root"
-PASSWORD = "Lisna699"
+PASSWORD = "--------"
 DATABASE = "arizona"
 
 source = requests.get('https://www.espn.com/nfl/team/roster/_/name/ari').text
