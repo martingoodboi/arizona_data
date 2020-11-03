@@ -47,7 +47,7 @@ for table in data_tables:
 		if(len(cells) > 0):
 		#get all the different data from the table's tds
 		#Split this cell into two different parts seperated by 'to' in order to have a start_date and an end_date.
-			names = cells[1].text.split()
+			player_name = cells[1].text.split()
 			pos = cells[2].text.split()
 			age = cells[3].text.split()
 			ht = cells[4].text.split()
@@ -56,8 +56,8 @@ for table in data_tables:
 			college = cells[7].text.split()
 
 			
-			print()
-			print(names,pos,age,ht,wt,exp,college)
+			#print()
+			#print(names,pos,age,ht,wt,exp,college)
 
 
 
