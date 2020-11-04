@@ -2,12 +2,13 @@ import requests
 import MySQLdb
 from bs4 import BeautifulSoup
 import re
+import mysql.connector
 
-#SQL connection data to connect and save the data in
+"""#SQL connection data to connect and save the data in
 HOST = "localhost"
 USERNAME = "root"
-PASSWORD = "--------"
-DATABASE = "arizona"
+PASSWORD = ""
+DATABASE = "arizona"""
 
 source = requests.get('https://www.espn.com/nfl/team/roster/_/name/ari').text
  
@@ -55,28 +56,64 @@ for table in data_tables:
 			exp = cells[6].text.split()
 			college = cells[7].text.split()
 
-			
+			#print(player_name,pos,age,ht,wt,exp,college)
 			#print()
-			#print(names,pos,age,ht,wt,exp,college)
+			
+
+			#remove nonnumeric char
+			player_name = ''.join(filter(str.isalnum, player_name))
+			pos = ''.join(filter(str.isalnum, pos))
+			age = ''.join(filter(str.isalnum, age))
+			wt = ''.join(filter(str.isalnum, wt))
+			exp = ''.join(filter(str.isalnum, exp))
+			college = ''.join(filter(str.isalnum, college))
+			#print(player_name,pos,age,ht,wt,exp,college)
+
+
+			# Function to  convert   
+			def __str__(ht):  
+				    
+				# initialize an empty string 
+				str1 = ""  
+				    
+				# traverse in the string   
+				for ele in ht:  
+				    str1 += ele   
+				    
+				# return string   
+				return str(str1)  
+			        
+			        
+			# Driver code     
+			#print(__str__(ht))
+			str_ht = __str__(ht)
+			x = (str_ht.replace('"',''))
+			ht_str = (x.replace("'",'.'))
+			#print(ht_str)
+
+			wt_int = (wt.replace("lbs", ""))
+			#print(wt_int)
+			exp_int = exp.replace("R","0")
+			#print(exp_int)
+
+			mydb = mysql.connector.connect(
+  			host="localhost",
+  			user="root",
+  			password="",
+  			database="arizona"
+			)			
 
 
 
-			#Save event data to database
-			# Open database connection
-			db = MySQLdb.connect("localhost", "root", "Lisna699", "arizona")
-			# prepare a cursor object using cursor() method
-			cursor = db.cursor()
-			# Prepare SQL query to INSERT a record into the database.
-			sql = "INSERT INTO arizona_roster ( player_name, pos, age, ht, wt, exp, college) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(player_name, pos, age, ht, wt, exp, college, 'NOW()')
-			try:
-				# Execute the SQL comman
-				cursor.execute(sql)
-				# Commit your changes in the database
-				db.commit()
-			except:
-				# Rollback in case there is any error
-				db.rollback()
-			# disconnect from server
-			db.close()
+			mycursor = mydb.cursor()
+
+			sql = "INSERT INTO arizona_roster(player_name, pos, age, ht, wt, exp, college) VALUES (%s, %s, %s,%s,%s,%s,%s)"
+			val = (player_name,pos,age,ht_str,wt_int,exp_int,college)
+			mycursor.execute(sql, val)
+
+			mydb.commit()
+
+			mycursor.close()
+			mydb.close()
 			
 
