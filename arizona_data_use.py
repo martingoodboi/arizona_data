@@ -89,7 +89,7 @@ for table in data_tables:
 			str_ht = __str__(ht)
 			x = (str_ht.replace('"',''))
 			ht_str = (x.replace("'",'.'))
-			print(ht_str)
+			#print(ht_str)
 
 			wt_int = (wt.replace("lbs", ""))
 			#print(wt_int)
