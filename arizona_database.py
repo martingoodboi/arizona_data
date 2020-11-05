@@ -17,28 +17,31 @@ for _ in mycursor:
   print(_)
 """
 #select * from table
-mycursor = mydb.cursor()
+"""mycursor = mydb.cursor()
 
 mycursor.execute("SELECT * FROM arizona_roster")
 
 myresult = mycursor.fetchall()
 
 for _ in myresult:
-  print(_)
+  print(_)"""
 
 #create table + add columns
 """mycursor = mydb.cursor()
 
-mycursor.execute("CREATE TABLE arizona_roster (id INT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, player_name VARCHAR(255) COLLATE utf8_unicode_ci NOT NULL, pos VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL, age INT unsigned NOT NULL, ht INT unsigned NOT NULL, wt INT unsigned NOT NULL, exp INT unsigned NOT NULL, college VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL)")
-
+mycursor.execute("CREATE TABLE arizona_roster (id INT unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, player_name VARCHAR(255) COLLATE utf8_unicode_ci NOT NULL, pos VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL, age INT unsigned NOT NULL, ht DECIMAL(3,2) unsigned NOT NULL, wt INT unsigned NOT NULL, exp INT unsigned NOT NULL, college VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL)")
 """
 
-#drop table
-"""mycursor = mydb.cursor()
+
+"""#drop table
+mycursor = mydb.cursor()
 
 sql = "DROP TABLE arizona_roster"
 
 mycursor.execute(sql)"""
+
+
+
 
 """mycursor = mydb.cursor()
 
