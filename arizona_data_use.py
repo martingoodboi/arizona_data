@@ -68,7 +68,7 @@ for table in data_tables:
 			exp = ''.join(filter(str.isalnum, exp))
 			college = ''.join(filter(str.isalnum, college))
 			#print(player_name,pos,age,ht,wt,exp,college)
-
+			
 
 			# Function to  convert   
 			def __str__(ht):  
@@ -89,14 +89,15 @@ for table in data_tables:
 			str_ht = __str__(ht)
 			x = (str_ht.replace('"',''))
 			ht_str = (x.replace("'",'.'))
-			#print(ht_str)
+			print(ht_str)
 
 			wt_int = (wt.replace("lbs", ""))
 			#print(wt_int)
 			exp_int = exp.replace("R","0")
 			#print(exp_int)
 
-			mydb = mysql.connector.connect(
+			
+			"""mydb = mysql.connector.connect(
   			host="localhost",
   			user="root",
   			password="",
@@ -114,6 +115,6 @@ for table in data_tables:
 			mydb.commit()
 
 			mycursor.close()
-			mydb.close()
+			mydb.close()"""
 			
 
